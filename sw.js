@@ -1,16 +1,16 @@
 const CACHE_NAME = "node-course-v1";
 const OFFLINE_URLS = [
-  "/",
-  "/index.html",
-  "/manifest.webmanifest",
-  "/public/icon.svg",
-  "/assets/js/course-parser.js",
-  "/assets/js/index.js",
-  "/assets/js/module.js",
-  "/assets/js/lesson.js",
-  "/modules/module.html",
-  "/lessons/lesson.html",
-  "/tasks/learn.plan.md"
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./public/icon.svg",
+  "./assets/js/course-parser.js",
+  "./assets/js/index.js",
+  "./assets/js/module.js",
+  "./assets/js/lesson.js",
+  "./modules/module.html",
+  "./lessons/lesson.html",
+  "./tasks/learn.plan.md"
 ];
 
 self.addEventListener("install", (event) => {
@@ -44,7 +44,7 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => caches.match("/index.html"));
+        .catch(() => caches.match("./index.html"));
     })
   );
 });

@@ -2,14 +2,14 @@
   "name": "Современный учебник Node.js",
   "short_name": "Node Учебник",
   "description": "Интерактивный курс по Node.js: модули, уроки, практика и тесты.",
-  "start_url": "/index.html",
-  "scope": "/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#0f172a",
   "icons": [
     {
-      "src": "/public/icon.svg",
+      "src": "./public/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
