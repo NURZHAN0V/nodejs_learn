@@ -14,6 +14,45 @@
         background: rgba(15, 23, 42, 0.55);
         backdrop-filter: blur(8px);
       }
+
+      .player-range {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 8px;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, rgba(34, 211, 238, 0.95), rgba(52, 211, 153, 0.95));
+        box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+      }
+
+      .player-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        border: 2px solid rgba(15, 23, 42, 0.95);
+        background: #f8fafc;
+        box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.25);
+        cursor: pointer;
+      }
+
+      .player-range::-moz-range-track {
+        height: 8px;
+        border: none;
+        border-radius: 9999px;
+        background: linear-gradient(90deg, rgba(34, 211, 238, 0.95), rgba(52, 211, 153, 0.95));
+        box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+      }
+
+      .player-range::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        border: 2px solid rgba(15, 23, 42, 0.95);
+        background: #f8fafc;
+        box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.25);
+        cursor: pointer;
+      }
     </style>
   </head>
   <body class="min-h-screen bg-slate-950 text-slate-100">
@@ -46,6 +85,43 @@
     </header>
 
     <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <section class="mb-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 sm:p-5">
+        <h2 class="text-lg font-semibold text-cyan-200">Аудио-лекция</h2>
+        <p class="mt-1 text-sm text-slate-300">
+          Прогресс прослушивания сохраняется автоматически и восстановится при следующем открытии страницы.
+        </p>
+        <audio
+          id="courseAudio"
+          class="hidden"
+          preload="metadata"
+          src="./public/%D0%9D%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F_%D1%80%D0%B5%D0%B2%D0%BE%D0%BB%D1%8E%D1%86%D0%B8%D1%8F_Node.m4a"
+        ></audio>
+
+        <div class="mt-4 rounded-xl border border-slate-800 bg-slate-950/60 p-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <button
+              id="audioPlayBtn"
+              class="inline-flex h-9 w-9 items-center justify-center text-2xl font-semibold text-cyan-300 transition hover:text-cyan-200"
+              aria-label="Воспроизвести или поставить на паузу"
+            >
+              <svg id="audioPlayIcon" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.14v13.72a1 1 0 0 0 1.53.85l10.3-6.86a1 1 0 0 0 0-1.66L9.53 4.29A1 1 0 0 0 8 5.14Z"></path>
+              </svg>
+            </button>
+            <p id="audioTimeText" class="text-sm text-slate-300">0:00 / --:--</p>
+            <label class="ml-auto hidden items-center gap-2 text-xs text-slate-300 sm:flex">
+              Громкость
+              <input id="audioVolume" type="range" min="0" max="1" step="0.05" value="1" class="player-range w-28" />
+            </label>
+          </div>
+
+          <div class="mt-4">
+            <input id="audioSeek" type="range" min="0" max="100" value="0" class="player-range w-full" />
+          </div>
+
+        </div>
+      </section>
+
       <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <label class="block w-full sm:max-w-md">
           <span class="mb-2 block text-sm text-slate-300">Поиск по плану курса</span>
