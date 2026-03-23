@@ -20,6 +20,7 @@
   };
 
   let deferredInstallPrompt = null;
+  let pwaInstalled = window.matchMedia("(display-mode: standalone)").matches;
 
   function formatTime(totalSec) {
     const sec = Math.max(0, Math.floor(totalSec));
@@ -289,24 +290,32 @@
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       deferredInstallPrompt = event;
-      ui.install?.classList.remove("hidden");
     });
 
     ui.install?.addEventListener("click", async () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      try {
-        await deferredInstallPrompt.userChoice;
-      } finally {
-        deferredInstallPrompt = null;
-        ui.install?.classList.add("hidden");
+      if (pwaInstalled) return;
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        try {
+          await deferredInstallPrompt.userChoice;
+        } finally {
+          deferredInstallPrompt = null;
+        }
+        return;
       }
+      const hint = window.matchMedia("(display-mode: browser)").matches
+        ? "Установка доступна через меню браузера: откройте меню и выберите 'Установить приложение' или 'Добавить на главный экран'."
+        : "Откройте сайт в браузере (не file://), чтобы появилась установка PWA.";
+      alert(hint);
     });
 
     window.addEventListener("appinstalled", () => {
+      pwaInstalled = true;
       deferredInstallPrompt = null;
       ui.install?.classList.add("hidden");
     });
+
+    if (pwaInstalled) ui.install?.classList.add("hidden");
 
     setupAudioProgress();
   }
