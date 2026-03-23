@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Современный учебник Node.js — Карта курса</title>
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" href="./public/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./public/icon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
       rel="stylesheet"
@@ -132,12 +136,20 @@
             class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm outline-none transition focus:border-cyan-400"
           />
         </label>
-        <button
-          id="resetProgressBtn"
-          class="rounded-xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200 transition hover:bg-rose-500/20"
-        >
-          Сбросить прогресс
-        </button>
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            id="installAppBtn"
+            class="hidden rounded-xl border border-cyan-400/40 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-200 transition hover:bg-cyan-500/20"
+          >
+            Установить приложение
+          </button>
+          <button
+            id="resetProgressBtn"
+            class="rounded-xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200 transition hover:bg-rose-500/20"
+          >
+            Сбросить прогресс
+          </button>
+        </div>
       </div>
 
       <section id="coursePlan" class="grid gap-4"></section>
@@ -146,5 +158,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="./assets/js/course-parser.js"></script>
     <script src="./assets/js/index.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

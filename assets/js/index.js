@@ -10,6 +10,7 @@
     search: document.getElementById("searchInput"),
     plan: document.getElementById("coursePlan"),
     reset: document.getElementById("resetProgressBtn"),
+    install: document.getElementById("installAppBtn"),
     audio: document.getElementById("courseAudio"),
     audioPlayBtn: document.getElementById("audioPlayBtn"),
     audioPlayIcon: document.getElementById("audioPlayIcon"),
@@ -17,6 +18,8 @@
     audioTimeText: document.getElementById("audioTimeText"),
     audioVolume: document.getElementById("audioVolume")
   };
+
+  let deferredInstallPrompt = null;
 
   function formatTime(totalSec) {
     const sec = Math.max(0, Math.floor(totalSec));
@@ -281,6 +284,28 @@
       completedLessonsSet.clear();
       renderStats(modules, completedSet, completedLessonsSet);
       renderPlan(modules, ui.search.value, completedSet, completedLessonsSet);
+    });
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      ui.install?.classList.remove("hidden");
+    });
+
+    ui.install?.addEventListener("click", async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      try {
+        await deferredInstallPrompt.userChoice;
+      } finally {
+        deferredInstallPrompt = null;
+        ui.install?.classList.add("hidden");
+      }
+    });
+
+    window.addEventListener("appinstalled", () => {
+      deferredInstallPrompt = null;
+      ui.install?.classList.add("hidden");
     });
 
     setupAudioProgress();
