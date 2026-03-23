@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Современный учебник Node.js — Карта курса</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      .glass {
+        background: rgba(15, 23, 42, 0.55);
+        backdrop-filter: blur(8px);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <header class="relative overflow-hidden border-b border-slate-800">
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/35 via-cyan-400/20 to-emerald-400/20"></div>
+      <div class="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <h1 class="mt-4 text-3xl font-bold leading-tight sm:text-4xl">
+          Современный учебник Node.js
+        </h1>
+        <p class="mt-4 max-w-3xl text-slate-300">
+          Изучайте курс модуль за модулем: теория, практика, тестирование и практические задания.
+          Каждый следующий раздел продолжает предыдущий.
+        </p>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-3">
+          <div class="glass rounded-xl border border-slate-700 p-4">
+            <p class="text-xs text-slate-300">Модулей</p>
+            <p id="statModules" class="mt-1 text-2xl font-semibold">0</p>
+          </div>
+          <div class="glass rounded-xl border border-slate-700 p-4">
+            <p class="text-xs text-slate-300">Уроки (пройдено/всего)</p>
+            <p id="statLessons" class="mt-1 text-2xl font-semibold">0/0</p>
+          </div>
+          <div class="glass rounded-xl border border-slate-700 p-4">
+            <p class="text-xs text-slate-300">Прогресс по урокам</p>
+            <p id="statProgress" class="mt-1 text-2xl font-semibold">0%</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <label class="block w-full sm:max-w-md">
+          <span class="mb-2 block text-sm text-slate-300">Поиск по плану курса</span>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Например: TypeScript, Express, тесты..."
+            class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm outline-none transition focus:border-cyan-400"
+          />
+        </label>
+        <button
+          id="resetProgressBtn"
+          class="rounded-xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200 transition hover:bg-rose-500/20"
+        >
+          Сбросить прогресс
+        </button>
+      </div>
+
+      <section id="coursePlan" class="grid gap-4"></section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="./assets/js/course-parser.js"></script>
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Урок курса Node.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <main id="app" class="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+      <nav id="breadcrumbs" class="mb-4 flex flex-wrap items-center gap-2 text-sm"></nav>
+
+      <header class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h1 id="lessonTitle" class="text-2xl font-bold"></h1>
+            <p id="lessonMeta" class="mt-2 text-sm text-slate-300"></p>
+            <p id="lessonPosition" class="mt-1 text-xs text-cyan-200"></p>
+            <div class="mt-2 h-2 w-64 max-w-full overflow-hidden rounded-full bg-slate-800">
+              <div id="lessonProgressBar" class="h-full rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400" style="width: 0%"></div>
+            </div>
+          </div>
+          <button
+            id="toggleLessonDoneBtn"
+            class="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200 hover:bg-emerald-500/20"
+          >
+            Отметить урок пройденным
+          </button>
+        </div>
+      </header>
+
+      <section class="mt-5 grid gap-4 lg:grid-cols-2">
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+          <h2 class="text-lg font-semibold text-cyan-200">Теория</h2>
+          <p id="theoryText" class="mt-3 text-sm leading-6 text-slate-200"></p>
+        </article>
+        <article class="rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+          <h2 class="text-lg font-semibold text-cyan-200">Практика</h2>
+          <ol id="practiceList" class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-200"></ol>
+        </article>
+      </section>
+
+      <section class="mt-5 rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <h2 class="text-lg font-semibold text-cyan-200">Код по шагам</h2>
+        <div id="codeSections" class="mt-4 grid gap-4"></div>
+      </section>
+
+      <section class="mt-5 rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <h2 class="text-lg font-semibold text-cyan-200">Тест</h2>
+        <div id="testForm" class="mt-3 grid gap-3"></div>
+        <div class="mt-4 flex items-center gap-3">
+          <button id="checkTestBtn" class="rounded-lg bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-400">
+            Проверить ответы
+          </button>
+          <p id="testSummary" class="hidden text-sm font-semibold text-cyan-200"></p>
+        </div>
+      </section>
+
+      <section class="mt-5 rounded-2xl border border-slate-800 bg-slate-900/80 p-5">
+        <h2 class="text-lg font-semibold text-cyan-200">Практическое задание</h2>
+        <p id="assignmentText" class="mt-3 text-sm leading-6 text-slate-200"></p>
+      </section>
+
+      <div id="lessonNav" class="mt-6 flex flex-wrap items-center justify-between gap-3"></div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="../assets/js/course-parser.js"></script>
+    <script src="../assets/js/lesson.js"></script>
+  </body>
+</html>
