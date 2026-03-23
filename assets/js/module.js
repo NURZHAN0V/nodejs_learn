@@ -136,7 +136,7 @@
     return sections
       .map(
         (section, index) => `
-        <article class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
+        <article class="min-w-0 rounded-xl border border-slate-800 bg-slate-950/60 p-4">
           <div class="mb-3 flex flex-wrap items-start justify-between gap-2">
             <div>
               <h3 class="text-sm font-semibold text-cyan-200">${esc(section.title)}</h3>
@@ -149,7 +149,7 @@
               Копировать блок
             </button>
           </div>
-          <pre class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950 p-4"><code class="language-javascript section-code">${esc(
+          <pre class="w-full max-w-full overflow-x-auto rounded-xl border border-slate-800 bg-slate-950 p-4"><code class="language-javascript section-code">${esc(
             section.code
           )}</code></pre>
         </article>
